@@ -5,7 +5,7 @@ import LazyLoader from "../components/LazyLoader";
 
 const LandingPage = React.lazy(() => import("../pages/LandingPage/LandingPage"));
 const NotFound = React.lazy(() => import("../pages/NotFound/NotFound"));
-// const LandingPage = React.lazy(() => import("../pages/LandingPage/LandingPage"));
+const Home = React.lazy(() => import("../pages/Home/Home"));
 
 
 export const router = createBrowserRouter([
@@ -21,13 +21,13 @@ export const router = createBrowserRouter([
     path: "/",
     Component: App,
     children: [
-      // {
-      //   index: true,
-      //   element: 
-      //   // <Suspense fallback={<LazyLoader />}>
-      //     <LandingPage />
-      //   // </Suspense>
-      // },
+      {
+        path: "/home",
+        element:
+          <Suspense fallback={<LazyLoader />}>
+            <Home />
+          </Suspense>
+      },
 
     ]
   },
