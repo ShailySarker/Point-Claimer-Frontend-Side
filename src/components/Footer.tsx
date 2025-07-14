@@ -1,5 +1,5 @@
 import moment from "moment";
-import { FaBook, FaDiscord, FaEnvelope, FaFacebook, FaInstagram, FaPhone, FaYoutube } from "react-icons/fa6";
+import { FaDiscord, FaEnvelope, FaFacebook, FaInstagram, FaPhone, FaYoutube } from "react-icons/fa6";
 import { Link } from "react-router";
 import { useNotify } from "../hooks/useNotify";
 import companyLogo from "../assets/images/Shared/company_logo.png";

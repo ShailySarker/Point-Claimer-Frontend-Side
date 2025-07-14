@@ -7,23 +7,31 @@ import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
+    index: true,
+    path: "/",
+    element:
+      // <Suspense fallback={<LazyLoader />}>
+      <LandingPage />
+    // </Suspense>
+  },
+  {
     path: "/",
     Component: App,
     children: [
-      {
-        index: true,
-        element: 
-        // <Suspense fallback={<LazyLoader />}>
-          <LandingPage />
-        // </Suspense>
-      },
-      
+      // {
+      //   index: true,
+      //   element: 
+      //   // <Suspense fallback={<LazyLoader />}>
+      //     <LandingPage />
+      //   // </Suspense>
+      // },
+
     ]
   },
   {
     path: "/*",
-    element: 
-    // <Suspense fallback={<LazyLoader />}>
+    element:
+      // <Suspense fallback={<LazyLoader />}>
       <NotFound />
     // </Suspense>
   }
