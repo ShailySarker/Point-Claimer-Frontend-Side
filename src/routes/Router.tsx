@@ -1,18 +1,21 @@
-import { Suspense } from "react";
+import React, { Suspense } from "react";
 import { createBrowserRouter } from "react-router";
-
 import App from "../App";
-import LandingPage from "../pages/LandingPage/LandingPage";
-import NotFound from "../pages/NotFound/NotFound";
+import LazyLoader from "../components/LazyLoader";
+
+const LandingPage = React.lazy(() => import("../pages/LandingPage/LandingPage"));
+const NotFound = React.lazy(() => import("../pages/NotFound/NotFound"));
+// const LandingPage = React.lazy(() => import("../pages/LandingPage/LandingPage"));
+
 
 export const router = createBrowserRouter([
   {
     index: true,
     path: "/",
     element:
-      // <Suspense fallback={<LazyLoader />}>
-      <LandingPage />
-    // </Suspense>
+      <Suspense fallback={<LazyLoader />}>
+        <LandingPage />
+      </Suspense>
   },
   {
     path: "/",
@@ -31,8 +34,8 @@ export const router = createBrowserRouter([
   {
     path: "/*",
     element:
-      // <Suspense fallback={<LazyLoader />}>
-      <NotFound />
-    // </Suspense>
+      <Suspense fallback={<LazyLoader />}>
+        <NotFound />
+      </Suspense>
   }
 ]);
