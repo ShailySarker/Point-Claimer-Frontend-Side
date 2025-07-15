@@ -1,5 +1,6 @@
 import AddUser from "./Components/AddUser";
 import Banner from "./Components/Banner";
+import FAQ from "./Components/FAQ";
 import PointsClaim from "./Components/PointsClaim";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
             <Banner />
             <PointsClaim />
             <AddUser />
+            <FAQ/>
         </>
     );
 };
