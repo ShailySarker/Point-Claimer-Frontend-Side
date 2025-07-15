@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useAddUserMutation } from '../../../redux/api/baseApi';
 import Swal from 'sweetalert2';
 import { FaX } from 'react-icons/fa6';
-import type { IUser } from '../../../types';
 
-const AddUser : IUser = () => {
-    
-    const [addUser, { isLoading: loading, isError: addingError}] = useAddUserMutation();
+const AddUser: React.FC = () => {
+
+    const [addUser, { isLoading: loading, isError: addingError }] = useAddUserMutation();
     const [isOpen, setOpen] = useState(false);
     const handleModal = () => {
         setOpen(true);

@@ -11,19 +11,6 @@ export const baseApi = createApi({
     endpoints: (builder) => ({
 
         // get all user
-        // getAllUser: builder.query({
-        //     // query: () => `/users`,
-        //     // providesTags: ["users"]
-        //     query: (page = 1) => `users?page=${page}`,
-        //     providesTags: (result) =>
-        //         result
-        //             ? [
-        //                 ...result.data.map((u: any) => ({ type: 'Users', id: u._id })),
-        //                 { type: 'Users', id: 'LIST' },
-        //             ]
-        //             : [{ type: 'Users', id: 'LIST' }],
-        // }),
-
         getAllUser: builder.query<{
             data: any[];
             page: number;

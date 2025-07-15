@@ -8,7 +8,7 @@ const PointsClaim: React.FC = () => {
     const [page, setPage] = useState(1);
     const { data, isLoading, isError } = useGetAllUserQuery(page);
     const users = data?.data;
-    const totalPages = data?.totalPages;
+    const countTotalPages = data?.totalPages;
 
     return (
         <div className='xl:px-20 lg:px-16 md:px-12 px-6 xl:mt-20 lg:mt-16 md:mt-14 mt-10'>
@@ -45,10 +45,10 @@ const PointsClaim: React.FC = () => {
                                         Prev
                                     </button>
                                     <span className='font-semibold xl:text-lg md:text-base text-[15px]'>
-                                        Page {page} of {totalPages}
+                                        Page {page} of {countTotalPages}
                                     </span>
                                     <button
-                                        disabled={page >= totalPages}
+                                        disabled={countTotalPages === undefined || page >= countTotalPages}
                                         onClick={() => setPage((p) => p + 1)}
                                         className="xl:px-8 lg:px-6 md:px-5 px-5 md:py-2 py-[5px] md:text-base text-[15px] bg-amber-700 text-white font-semibold rounded-full disabled:opacity-50"
                                     >

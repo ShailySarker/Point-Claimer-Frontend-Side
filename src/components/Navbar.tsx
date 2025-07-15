@@ -5,10 +5,10 @@ import companyLogo from "../assets/images/Shared/company_logo.png";
 import { useNotify } from "../hooks/useNotify";
 
 const Navbar = () => {
-
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [click, setClick] = useState(false);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    console.log(isDropdownOpen);
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!isMobileMenuOpen);
         setIsDropdownOpen(true);
