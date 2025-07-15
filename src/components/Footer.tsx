@@ -31,7 +31,7 @@ const Footer = () => {
                     <h2 className="xl:text-2xl lg:text-xl md:text-lg text-[17px] font-bold">Reach Us</h2>
                     <div className="flex flex-col xl:gap-3 md:gap-2 gap-[6px] xl:text-[17px] lg:text-[15px] md:text-base text-sm xl:mt-7 md:mt-5 mt-3 font-medium">
                         <p className="flex items-center gap-2"><FaEnvelope />contact@pointclaimer.com</p>
-                        <p className="flex items-center gap-2"><FaPhone /> +880 0000000000</p>
+                        <p className="flex items-center gap-2"><FaPhone /> +91 0000000000</p>
                         <p></p>
                     </div>
                     <div className="xl:mt-6 md:mt-4 mt-3 flex xl:gap-7 md:gap-6 gap-5">
@@ -53,7 +53,7 @@ const Footer = () => {
             <div className='bg-black xl:py-4 md:py-3 py-2'>
                 <div className='font-medium text-[#FFFFFF] text-center xl:text-base md:text-sm text-[13px] flex items-center gap-1 justify-center'>© <span>{moment().format('YYYY')}</span><span className='font-bold flex items-center gap-[5px]'>
                     <img src={companyLogo} className="ml-1 xl:w-6 xl:h-6 lg:w-5 lg:h-5 md:w-[18px] md:h-[18px] w-4 h-4" alt="companyLogo" />
-                    Book Hub</span>. All Rights Reserved.</div>
+                    Point Claimer</span>. All Rights Reserved.</div>
             </div>
         </div>
     );
