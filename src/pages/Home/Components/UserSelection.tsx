@@ -1,37 +1,54 @@
-import { useClaimPointsMutation } from "../../../redux/api/baseApi";
+import React from 'react';
+import { useClaimPointsMutation } from '../../../redux/api/baseApi';
+import Swal from 'sweetalert2';
 
-interface UserCardProps {
-    user: { _id: string; name: string; totalPoints: number };
-    isSelected: boolean;
-    onSelect: (id: string) => void;
+interface UserSelectionProps {
+    user: { _id: string; name: string; points: number }
+
 }
-const UserSelection: React.FC<UserCardProps> = ({ user, isSelected, onSelect }) => {
-    const [claimPoints, { isLoading }] = useClaimPointsMutation();
+
+const UserSelection: React.FC<UserSelectionProps> = ({ user }) => {
+
+    const [claimPoints, { isLoading }] = useClaimPointsMutation({});
+
+    const handleClaim = async () => {
+        try {
+            const result = await claimPoints(user?._id).unwrap();
+            Swal.fire({
+                icon: "success",
+                title: `Awarded ${result?.data?.pointsAwarded} points to ${result?.data?.user?.name}`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        } catch (err: any) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: `Error: ${err.data?.message || 'Unknown error.'}`,
+            });
+        }
+    };
+
+    // Get first letter
+    const initial = user?.name.charAt(0).toUpperCase();
 
     return (
-        <div
-            onClick={() => onSelect(user?._id)}
-            className={`
-        group p-4 bg-white rounded-lg shadow transition-transform duration-300 
-        hover:scale-105 cursor-pointer border ${isSelected ? 'border-blue-500' : 'border-transparent'}
-      `}
-        >
-            <h3 className="text-lg font-semibold">{user?.name}</h3>
-            <p className="text-sm text-gray-500">{user?.totalPoints} pts</p>
-            {isSelected && (
-                <button
-                    onClick={(e) => {
-                        e.stopPropagation();
-                        claimPoints(user?._id);
-                    }}
-                    disabled={isLoading}
-                    className="mt-4 bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
-                >
-                    {isLoading ? 'Claiming...' : 'Claim Points'}
-                </button>
-            )}
+        <div className="group flex flex-col items-center xl:p-5 lg:p-4 p-[14px] bg-amber-100 border-2 border-amber-700 rounded-xl shadow-md transition-transform duration-300 hover:scale-105">
+            <div className="xl:w-24 xl:h-24 lg:w-[70px] lg:h-[70px] md:w-16 md:h-16 w-14 h-14 bg-amber-400 text-white rounded-full flex items-center justify-center xl:text-3xl lg:text-[26px] md:text-2xl font-semibold xl:mb-5 md:mb-4 mb-3">
+                {initial}
+            </div>
+            <h3 className="xl:text-2xl md:text-lg text-[17px] font-semibold">{user?.name}</h3>
+            <p className="xl:text-lg md:text-base text-[14.5px] text-gray-500 xl:mb-3 mb-2 italic">{user?.points} points</p>
+            <button
+                onClick={handleClaim}
+                disabled={isLoading}
+                className="xl:px-8 lg:px-5 px-4 xl:py-3 md:py-[10px] py-2 bg-amber-700 text-white font-semibold rounded-xl hover:bg-amber-600 hover:rounded-4xl transition md:text-base/none text-sm/none"
+            >
+                {isLoading ? 'Claiming...' : 'Claim Points'}
+            </button>
         </div>
     );
 };
+
 
 export default UserSelection;
