@@ -6,6 +6,7 @@ import LazyLoader from "../components/LazyLoader";
 const LandingPage = React.lazy(() => import("../pages/LandingPage/LandingPage"));
 const NotFound = React.lazy(() => import("../pages/NotFound/NotFound"));
 const Home = React.lazy(() => import("../pages/Home/Home"));
+const Leaderboard = React.lazy(() => import("../pages/Leaderboard/Leaderboard"));
 
 
 export const router = createBrowserRouter([
@@ -28,7 +29,13 @@ export const router = createBrowserRouter([
             <Home />
           </Suspense>
       },
-
+      {
+        path: "/leaderboard",
+        element:
+          <Suspense fallback={<LazyLoader />}>
+            <Leaderboard />
+          </Suspense>
+      },
     ]
   },
   {
